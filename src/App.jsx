@@ -1,48 +1,32 @@
-import Hello from "./components/Hello"
+
 import Header from "./components/Header.jsx";
+import FeedbackData from "./data/FeedbackData.js";
+import {useState} from "react";
+import FeedBackList from "./components/FeedBackList.jsx";
+import FeedbackStat from "./components/FeedbackStat.jsx";
 
 
 function App() {
-    const msg = "Comment"
-    const showComment = true
+    const [feedbacks, setFeedbacks] = useState(FeedbackData)
 
-    const loading = false
-    const feedbacks = [
-        {
-            id: 1,
-            text: 'Comment 1',
-        },
-        {
-            id: 2,
-            text: 'Comment 2',
-        },
-        {
-            id: 3,
-            text: 'Comment 3',
-        },
-    ]
+    const deleteFeedback = (id) => {
+        if(window.confirm('Ви впевнені, що хочете видалити цей важливий відгук??')
+        ){
+            setFeedbacks(feedbacks.filter(msg => msg.id !== id))
+        }
 
-    const text = 'TEXT456'
+    }
 
-    if (loading) return (<div style={{backgroundColor: 'red'}}>Loading...</div>)
 
 
   return (
     <>
         <Header />
-        {showComment && msg }
+        <div className="container">
+            <FeedbackStat feedbacks={feedbacks} />
+            <FeedBackList feedbacks={feedbacks} handleDelete={deleteFeedback}/>
+        </div>
 
-        <h3>Коментарі: {feedbacks.length}</h3>
-      {/*<Hello />*/}
-        {showComment && (<>
-            <ul>
-                {feedbacks.map((val) => {
-                    return (
-                        <li key={val.id}>{val.id} : {val.text}</li>
-                    )
-                })}
-            </ul>
-        </>)}
     </>
   )
 }
