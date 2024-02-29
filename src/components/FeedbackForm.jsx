@@ -6,7 +6,7 @@ import RatingSelect from "./RatingSelect.jsx";
 
 const FeedbackForm = ({handleAdd}) => {
     const [text, setText] = useState('')
-    const [rating, setRating] = useState(10)
+    const [rating, setRating] = useState(9)
     const [btnDisabled, setBtnDisabled] = useState(true)
     const [message, setMessage] = useState('')
     const handleTextChange = (e) => {
@@ -44,7 +44,7 @@ const FeedbackForm = ({handleAdd}) => {
         <Card>
             <form onSubmit={handleSubmit}>
                 <h2>Дайте оцінку нашому курсу</h2>
-                <RatingSelect />
+                <RatingSelect  select={setRating}/>
                 <div className="input-group">
                     <input
                         onChange={handleTextChange}

@@ -6,6 +6,9 @@ import FeedBackList from "./components/FeedBackList.jsx";
 import FeedbackStat from "./components/FeedbackStat.jsx";
 import FeedbackForm from "./components/FeedbackForm.jsx";
 import { v4 as uuidv4 } from 'uuid';
+import AboutIconLink from "./components/AboutIconLink.jsx";
+import Card from "./shared/Card.jsx";
+import {NavLink} from "react-router-dom";
 
 
 function App() {
@@ -34,6 +37,8 @@ function App() {
             <FeedbackForm handleAdd={addFeedback} />
             <FeedbackStat feedbacks={feedbacks} />
             <FeedBackList feedbacks={feedbacks} handleDelete={deleteFeedback}/>
+
+            <AboutIconLink />
         </div>
 
     </>
