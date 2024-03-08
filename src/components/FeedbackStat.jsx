@@ -1,6 +1,11 @@
+import {useContext} from "react";
+import FeedbackContext from "../context/FeedbackContext.jsx";
 
 
-const FeedbackStat = ({feedbacks}) => {
+const FeedbackStat = () => {
+    const {feedbacks} = useContext(FeedbackContext)
+
+
     let average = feedbacks.reduce((sum, cur) => sum + +cur.rating, 0)/feedbacks.length
     average = average.toFixed(1).replace(/[.,]0$/,'')
 

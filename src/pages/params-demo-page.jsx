@@ -1,9 +1,8 @@
-import React from 'react';
 import {useParams} from "react-router-dom";
 
 const ParamsDemoPage = () => {
     const params = useParams()
-    console.log(params)
+    console.log('params demo',params)
     return (
         <div>
             <h1>Param1: {params.id}</h1>
