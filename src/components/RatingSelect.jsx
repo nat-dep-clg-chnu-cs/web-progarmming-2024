@@ -18,6 +18,7 @@ const RatingItem = ({nmbr, handlCh, selected}) => {
 }
 
 const RatingSelect = ({select}) => {
+    //TODO fix for 10
     const {feedbackEdit} = useContext(FeedbackContext)
     const [selected, setSelected] = useState(10)
 
