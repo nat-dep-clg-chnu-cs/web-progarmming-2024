@@ -1,28 +1,33 @@
 {
   "feedbacks": [
     {
-      "id": 1,
+      "id": "1",
       "rating": "10",
       "text": "Comment from backend 1"
     },
     {
-      "id": 2,
+      "id": "2",
       "rating": 9,
       "text": "Comment from backend 2"
     },
     {
-      "id": 3,
-      "rating": 8,
-      "text": "Comment from backend 3"
+      "text": "Comment from backend 33",
+      "rating": 10,
+      "id": "3"
+    },
+    {
+      "id": "1a12",
+      "text": "New feedback",
+      "rating": 9
     }
   ],
   "thema": [
     {
-      "id": 1,
+      "id": "1",
       "thema": "dark"
     },
     {
-      "id": 1,
+      "id": "2",
       "thema": "light"
     }
   ]
