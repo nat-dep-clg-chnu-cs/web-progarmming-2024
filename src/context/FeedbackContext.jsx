@@ -28,27 +28,28 @@ export const FeedbackProvider = ({children}) => {
     const deleteFeedback = async (id) => {
         if(window.confirm('Ви впевнені, що хочете видалити цей важливий відгук??')
         ){
-            const response = await fetch(`http://localhost:3000/feedbacks/${id}`, {
-                method: "DELETE"
+            // const response = await fetch(`http://localhost:3000/feedbacks/${id}`, {
+            //     method: "DELETE"
+            // })
+            // const data = await response.json()
+            //
+            // console.log("DELETE", data)
+            //
+            // setFeedbacks(feedbacks.filter(msg => msg.id !== id))
+
+            getDataFromGoogleApp(`${googleUrl}?method=DELETE&id=${id}`).then(data => {
+                // console.log('Data from Google',data)
+                setFeedbacks(data.feedbacks)
+                // setIsloading(false)
             })
-            const data = await response.json()
-
-            console.log("DELETE", data)
-
-            setFeedbacks(feedbacks.filter(msg => msg.id !== id))
         }
 
     }
 
     const fetchFeedback = async () => {
-        // const response = await fetch('http://localhost:3000/feedbacks')
-        // const data = await response.json()
-        // // console.log('data', data)
-        // setFeedbacks(data)
-        // setIsloading(false)
 
-        getDataFromGoogleApp(googleUrl).then(data => {
-            console.log('Data from Google',data)
+        getDataFromGoogleApp(`${googleUrl}?method=GET`).then(data => {
+            // console.log('Data from Google',data)
             setFeedbacks(data.feedbacks)
             setIsloading(false)
         })
@@ -63,18 +64,15 @@ export const FeedbackProvider = ({children}) => {
     }
 
     const addFeedback = async (newFeedback) => {
-        const response = await fetch('http://localhost:3000/feedbacks?_sort=id&_order=asc', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newFeedback)
+
+
+        newFeedback.id = uuidv4()
+        getDataFromGoogleApp(`${googleUrl}?method=POST&id=${newFeedback.id}&rating=${newFeedback.rating}&text=${newFeedback.text}`).then(data => {
+            // console.log('Data from Google',data)
+            setFeedbacks(data.feedbacks)
+            // setIsloading(false)
         })
 
-        const data = await response.json()
-
-        // newFeedback.id = uuidv4()
-        setFeedbacks([data, ...feedbacks])
 
     }
 
